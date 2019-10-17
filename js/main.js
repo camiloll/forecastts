@@ -6,7 +6,6 @@ $(function(){
 	.form({
 	  fields: {
 		"data"     : 'empty',
-		"matrix"   : 'empty',
 		"H" 	   : 'empty'
 	  },
 	  onSuccess: function(e, fields) {

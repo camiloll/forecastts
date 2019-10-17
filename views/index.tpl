@@ -41,10 +41,6 @@
         </div>
         <div class="two fields">
           <div class="field">
-            <label>Matrix</label>
-            <input placeholder="[[1,0],[1,1]]" name="matrix" type="text">
-          </div>
-          <div class="field">
             <label>To predict</label>
             <input name="H" type="number" min="1" step="1">
           </div>

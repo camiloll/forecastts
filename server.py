@@ -28,7 +28,6 @@ def main():
 
 @app.post('/data/upload')
 def data_process():
-    print(request.forms.get('file'))
     upload = request.files.get('file')
 
     if upload is None:
@@ -39,11 +38,13 @@ def data_process():
     if ext not in ('.csv', '.xls', '.xlsx'):
         return 'upload_error=1'
     
-    return data.process(upload.file, ext)
+    H = int(request.forms.get('H'))
+    return data.process(upload.file, ext, H)
 
 
 @app.route('/semantic/<filename:path>')
 def semantic(filename):
+    print('Semantic:',filename)
     response = static_file(filename, root='semantic/dist')
     response.set_header("Cache-Control", "public, max-age=0")
     return response

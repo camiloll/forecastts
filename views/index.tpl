@@ -33,7 +33,7 @@
   </div>
 
   <div class="ui main text container">
-    <div class="ui stackable one column vertically divided grid container">
+    <div class="ui container">
       <form id="dataInput" class="ui form segment">
         <div class="inline field">
           <label>Data</label>

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "gulp": "^3.9.1",
     "semantic-ui": "^2.4.2"
   },
   "devDependencies": {},
@@ -15,7 +16,7 @@
     "url": "git+https://github.com/camiloll/forecastts.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/camiloll/forecastts/issues"
   },

@@ -36,35 +36,46 @@
 
   <div class="ui main text container">
     <div class="ui container">
-      <form id="dataInput" class="ui form segment">
-        <div class="two fields">
-          <div class="field">
-            <label>Data</label>
-            <input id="file" type="file" accept=".csv, .xls, .xlsx, application/vnd.ms-excel" name="file">
+      <div class="ui column">
+        <form id="dataInput" class="ui form segment">
+          <div class="two fields">
+            <div class="field">
+              <label>Data</label>
+              <input id="file" type="file" accept=".csv, .xls, .xlsx, application/vnd.ms-excel" name="file">
+            </div>
+            <div class="field">
+              <label>H</label>
+              <input name="H" type="number" min="1" step="1" placeholder="4">
+            </div>
           </div>
-          <div class="field">
-            <label>H</label>
-            <input name="H" type="number" min="1" step="1" placeholder="4">
+          <div class="two fields">
+            <div class="field">
+              <label>C</label>
+              <input name="C" type="text" placeholder="[[0,0,0,1],[0,-1,0,1]]">
+            </div>
+            <div class="field">
+              <label>Y</label>
+              <input name="Y" type="text" placeholder="[1.2,0.1]">
+            </div>
           </div>
+          <div class="ui primary submit button">Submit</div>
+          <div class="ui clear button">Clear</div>
+          <div class="ui button" onclick="$summary.toggle();">Toggle info</div>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div class="ui container">
+      <div id="summary" class="ui column" style="display:none;">
+        <div class="ui message">
         </div>
-        <div class="two fields">
-          <div class="field">
-            <label>C</label>
-            <input name="C" type="text" placeholder="[[0,0,0,1],[0,-1,0,1]]">
-          </div>
-          <div class="field">
-            <label>Y</label>
-            <input name="Y" type="text" placeholder="[1.2,0.1]">
-          </div>
-        </div>
-        <div class="ui primary submit button">Submit</div>
-        <div class="ui clear button">Clear</div>
-      </form>
+      </div>
     </div>
   </div>
-  <div class="ui main container">
+  <div class="ui container">
     <div id="loaderSpin" class="ui active centered inline loader" style="display:none;">
     </div>
+    <br>
     <div id="output" class="ui container">
       <div class="ui column">
         <div id="chart" style="width: 100%;

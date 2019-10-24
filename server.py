@@ -44,7 +44,6 @@ def data_process():
 
 @app.route('/semantic/<filename:path>')
 def semantic(filename):
-    print('Semantic:',filename)
     response = static_file(filename, root='semantic/dist')
     response.set_header("Cache-Control", "public, max-age=0")
     return response

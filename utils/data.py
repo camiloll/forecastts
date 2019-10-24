@@ -14,18 +14,19 @@ def process(file, ext, H):
     else:
         df = pd.read_excel(file)
     
-    df = df['PIB']
+    df = df[df.columns[0]]
 
     Zt = df.to_json(orient='values')
-    Zh, Zh_l, Zh_u = forecast(df,H)
+    t = dumps([x for x in range(len(df))])
+    Zh, th, Zh_l, Zh_u, summary = forecast(df,H)
     
-    data = {'Z':Zt, 'Zh':Zh, 'Zh_l':Zh_l,'Zh_u':Zh_u}
+    data = {'Z':Zt, 't':t, 'Zh':Zh, 'th':th, 'Zh_l':Zh_l,'Zh_u':Zh_u,'summary':summary}
 
     return dumps(data)
 
 
 def forecast(df,H):
-    model = pm.auto_arima(df.values[:], start_p=1, start_q=1,
+    model = pm.auto_arima(df.values[:], start_p=2, start_q=2,
                         test='adf',       # use adftest to find optimal 'd'
                         max_p=3, max_q=3, # maximum p and q
                         m=1,              # frequency of series
@@ -42,12 +43,17 @@ def forecast(df,H):
     n_periods = H
     fc, confint = model.predict(n_periods=n_periods, return_conf_int=True)
     index_of_fc = pd.RangeIndex(start=df.index.stop,stop=df.index.stop+H)
+    th = dumps([x for x in range(len(df),len(df)+H)])
     # index_of_fc = pd.PeriodIndex((pd.to_datetime(df.values[:,0]) + H*timedelta(weeks=12))[-H:],freq='Q')
     
     fc_series = pd.Series(fc, index=index_of_fc).to_json(orient='values')
     lower_series = pd.Series(confint[:, 0], index=index_of_fc).to_json(orient='values')
     upper_series = pd.Series(confint[:, 1], index=index_of_fc).to_json(orient='values')
-    return fc_series, lower_series, upper_series
+
+    model_params = model.to_dict()
+    summary = dumps({'order':model_params['order'],'params':model_params['params'].tolist(),'summary':model.summary().as_html()})
+    
+    return fc_series, th, lower_series, upper_series, summary
 
 
 def restricted():

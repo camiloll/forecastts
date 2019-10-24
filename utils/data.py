@@ -34,6 +34,8 @@ def forecast(df,H):
                         seasonal=False,   # No Seasonality
                         start_P=0, 
                         D=0, 
+                        trend=None,
+                        with_intercept=False,
                         trace=False,
                         error_action='ignore',  
                         suppress_warnings=True, 

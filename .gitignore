@@ -1,7 +1,5 @@
 node_modules
 .vscode
-semantic/*
-!semantic/dist/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

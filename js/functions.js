@@ -5,11 +5,13 @@ function plot(data) {
     var th = JSON.parse(data['th']);
     var Zh_u = JSON.parse(data['Zh_u']);
     var Zh_l = JSON.parse(data['Zh_l']);
+    var Zh_res = JSON.parse(data['Zh_res']);
 
     var lastZ = Z[Z.length - 1];
     Zh.unshift(lastZ);
     Zh_u.unshift(lastZ);
     Zh_l.unshift(lastZ);
+    Zh_res.unshift(lastZ);
     th.unshift(t[t.length - 1]);
 
     traces = [{
@@ -59,6 +61,16 @@ function plot(data) {
                 color: '#2ca02c'
             },
             legendgroup: 'group3',
+        },
+        {
+            x: th,
+            y: Zh_res,
+            name: 'Restricted Forecast',
+            type: 'scatter',
+            marker: {
+                color: '#ff7f0e'
+            },
+            legendgroup: 'group4',
         }
     ];
     Plotly.newPlot('chart', traces);

@@ -38,9 +38,14 @@ def data_process():
     if ext not in ('.csv', '.xls', '.xlsx'):
         return 'upload_error=1'
     
-    H = int(request.forms.get('H'))
-    return data.process(upload.file, ext, H)
-
+    try:
+        H = int(request.forms.get('H'))
+        C = request.forms.get('C')
+        Y = request.forms.get('Y')
+        return data.process(upload.file, ext, H, C, Y)
+    except Exception as e:
+        print('Error while data.process: {}'.format(e))
+        return 'Error: {}'.format(e)
 
 @app.route('/semantic/<filename:path>')
 def semantic(filename):

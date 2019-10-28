@@ -1,7 +1,7 @@
 import os
 
 from bottle import Bottle, route, get, post, template, redirect, \
-                   static_file, error, run, request, response, default_app
+    static_file, error, run, request, response, default_app
 
 from utils import data
 
@@ -16,7 +16,7 @@ def tpl(name, error_msg=None, data=None):
 
 @app.route('/')
 def main():
-    try:    
+    try:
         _ = request.query['upload_error']
         error_msg = '<div style="display:block;" class="ui error message">\
         <ul class="list"><li>Check your file and try again.</li></ul></div>'
@@ -37,7 +37,7 @@ def data_process():
 
     if ext not in ('.csv', '.xls', '.xlsx'):
         return 'upload_error=1'
-    
+
     try:
         H = int(request.forms.get('H'))
         C = request.forms.get('C')
@@ -46,6 +46,7 @@ def data_process():
     except Exception as e:
         print('Error while data.process: {}'.format(e))
         return 'Error: {}'.format(e)
+
 
 @app.route('/semantic/<filename:path>')
 def semantic(filename):
@@ -67,7 +68,8 @@ def static_js(filename):
     response.set_header("Cache-Control", "public, max-age=0")
     return response
 
-debugging = True
+
+debugging = False
 if debugging:
     if os.environ.get('PORT') is None:
         run(app, host='localhost', server='wsgiref', port=8080, debug=True,

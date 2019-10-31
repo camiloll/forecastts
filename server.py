@@ -76,7 +76,7 @@ def static_js(filename):
     return response
 
 
-debugging = True
+debugging = False
 if debugging:
     run(app, host='localhost', server='wsgiref', port=os.environ.get('PORT', 8080),
         debug=debugging,

@@ -17,3 +17,11 @@
  .simpletable:last-child {
      display: none;
  }
+
+ .field.right * {
+     float: right;
+ }
+
+ div#btnAutoARIMA {
+     padding-top: 0.5em;
+ }

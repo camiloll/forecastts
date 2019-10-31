@@ -39,12 +39,19 @@ def data_process():
         return 'upload_error=1'
 
     try:
-        H = int(request.forms.get('H'))
+        H = int(request.forms.get('H', 1))
         C = request.forms.get('C')
         Y = request.forms.get('Y')
-        return data.process(upload.file, ext, H, C, Y)
+        toggle = request.forms.get('autoarima')
+        log = request.forms.get('log')
+        P = int(request.forms.get('P', 0))
+        D = int(request.forms.get('D', 0))
+        Q = int(request.forms.get('Q', 0))
+        result = data.process(upload.file, ext, log, H, C, Y, toggle, P, D, Q)
+        return result
+
     except Exception as e:
-        print('Error while data.process: {}'.format(e))
+        print('Error: {}'.format(e))
         return 'Error: {}'.format(e)
 
 
@@ -69,13 +76,11 @@ def static_js(filename):
     return response
 
 
-debugging = False
+debugging = True
 if debugging:
-    if os.environ.get('PORT') is None:
-        run(app, host='localhost', server='wsgiref', port=8080, debug=True,
-            reloader=True)
-    else:
-        run(app, host='0.0.0.0', server='wsgiref', port=os.environ.get('PORT'))
+    run(app, host='localhost', server='wsgiref', port=os.environ.get('PORT', 8080),
+        debug=debugging,
+        reloader=debugging)
 else:
     run(app, host='0.0.0.0', server='gunicorn', workers=4,
         port=os.environ.get('PORT'))

@@ -73,10 +73,17 @@ function plot(data) {
             legendgroup: 'group4',
         }
     ];
+    $output.show();
     Plotly.newPlot('chart', traces);
 };
 
 function print(data) {
     $summary.children().html(JSON.parse(data['summary'])['summary']);
     $summary.show();
+}
+
+function printError(msg) {
+    $summary.children().html(msg);
+    $summary.show();
+    $output.hide();
 }

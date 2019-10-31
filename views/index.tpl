@@ -71,13 +71,48 @@
               <input name="Y" type="text" placeholder="[1.2,0.1]">
             </div>
           </div>
-          <div class="ui primary submit button">Submit</div>
-          <div class="ui clear button">Clear</div>
-          <div class="ui button" onclick="$summary.toggle();">Toggle info</div>
+          <div class="two fields">
+            <div class="field">
+              <div id="btnAutoARIMA" class="ui checked toggle checkbox">
+                <input type="checkbox" checked="" name="autoarima">
+                <label>auto-ARIMA</label>
+              </div>
+              &nbsp;
+              <div id="btnLog" class="ui checked toggle checkbox">
+                <input type="checkbox" name="log">
+                <label>Log</label>
+              </div>
+            </div>
+            <div class="field right">
+              <div class="ui primary submit button">Submit</div>
+              <div class="ui clear button">Clear</div>
+              <div id="btnToggleInfo" class="ui button" onclick="$summary.toggle();">Toggle info</div>
+            </div>
+          </div>
         </form>
       </div>
     </div>
     <br>
+    <div id="autoarimaForm" class="ui container" style="display:none;">
+      <div class="ui column">
+        <form id="autoarimaInput" class="ui form segment">
+          <div class="three wide fields">
+            <div class="field">
+              <label>P</label>
+              <input name="P" type="number" min="0" step="1" placeholder="1">
+            </div>
+            <div class="field">
+              <label>D</label>
+              <input name="D" type="number" min="0" step="1" placeholder="1">
+            </div>
+            <div class="field">
+              <label>Q</label>
+              <input name="Q" type="number" min="0" step="1" placeholder="1">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="ui container">
       <div id="summary" class="ui column" style="display:none;">
         <div class="ui message">
@@ -86,6 +121,7 @@
     </div>
   </div>
   <div class="ui container">
+    <br>
     <div id="loaderSpin" class="ui active centered inline loader" style="display:none;">
     </div>
     <br>
